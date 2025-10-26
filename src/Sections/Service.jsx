@@ -24,51 +24,59 @@ import digital from "../assets/led.jpg";
 const services = [
   {
     title: "Visiting Card Design & Printing",
-    icon: <FaAddressCard className="text-4xl text-orange-400 mb-4 drop-shadow-glow" />,
+    icon: FaAddressCard,
     image: visiting,
     desc: "Professional visiting cards designed with modern layouts, premium textures, and vibrant color accuracy to represent your brand identity.",
+    color: "text-orange-400",
   },
   {
     title: "Flex & Banner Printing",
-    icon: <FaImage className="text-4xl text-pink-400 mb-4 drop-shadow-glow" />,
+    icon: FaImage,
     image: flex,
     desc: "Large-format flex and banners perfect for events and promotions — weather-resistant and high-resolution for maximum visibility.",
+    color: "text-pink-400",
   },
   {
     title: "T-Shirt Printing",
-    icon: <FaTshirt className="text-4xl text-blue-400 mb-4 drop-shadow-glow" />,
+    icon: FaTshirt,
     image: tshirt,
     desc: "Custom T-shirt printing for business, events, or gifting — available in sublimation, vinyl, and screen-printing techniques.",
+    color: "text-blue-400",
   },
   {
     title: "Cup & Mug Printing",
-    icon: <FaMugHot className="text-4xl text-rose-400 mb-4 drop-shadow-glow" />,
+    icon: FaMugHot,
     image: cup,
     desc: "Personalized mugs and cups with your logo, text, or photo — perfect for gifts, promotions, or office branding.",
+    color: "text-rose-400",
   },
   {
     title: "LED Board & Signage",
-    icon: <FaLightbulb className="text-4xl text-yellow-400 mb-4 drop-shadow-glow" />,
+    icon: FaLightbulb,
     image: led,
     desc: "Bright LED signage and glow boards that make your shop or brand visible even at night — built to last with vibrant lighting.",
+    color: "text-yellow-400",
   },
   {
     title: "Laser Cutting & Engraving",
-    icon: <FaCut className="text-4xl text-green-400 mb-4 drop-shadow-glow" />,
+    icon: FaCut,
     image: laser,
     desc: "Precision laser cutting and engraving services for wood, acrylic, and metal — perfect for nameplates, trophies, and decor.",
+    color: "text-green-400",
   },
   {
     title: "Invitation Card Design",
-    icon: <FaEnvelopeOpenText className="text-4xl text-purple-400 mb-4 drop-shadow-glow" />,
+    icon: FaEnvelopeOpenText,
     image: invite,
     desc: "Custom invitation cards for weddings, birthdays, or business events — designed elegantly to fit your theme and personality.",
+    color: "text-purple-400",
   },
   {
     title: "Digital Graphic Design",
-    icon: <FaPaintBrush className="text-4xl text-indigo-400 mb-4 drop-shadow-glow" />,
+    icon: FaPaintBrush,
     image: digital,
     desc: "Creative designs for social media, posters, and online branding — crafted with modern aesthetics and brand consistency.",
+    color: "text-indigo-400",
   },
 ];
 
@@ -101,38 +109,47 @@ const Service = () => {
 
       {/* Services */}
       <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-        {services.map((service, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: index * 0.15 }}
-            whileHover={{
-              scale: 1.07,
-              rotate: 1,
-              boxShadow: "0px 0px 30px rgba(255,255,255,0.5)",
-            }}
-            className="relative rounded-3xl overflow-hidden p-[2px] group"
-          >
-            {/* Animated gradient glow border */}
-            <div className="absolute inset-0 bg-[conic-gradient(from_0deg,#ff00ff,#ff8800,#00ffff,#ff00ff)] animate-rotate rounded-3xl blur-md opacity-70 group-hover:opacity-100"></div>
+        {services.map((service, index) => {
+          const Icon = service.icon;
+          return (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              whileHover={{
+                scale: 1.07,
+                rotate: 1,
+                boxShadow: "0px 0px 30px rgba(255,255,255,0.5)",
+              }}
+              className="relative rounded-3xl overflow-hidden p-[2px] group"
+            >
+              {/* Animated gradient glow border */}
+              <div className="absolute inset-0 bg-[conic-gradient(from_0deg,#ff00ff,#ff8800,#00ffff,#ff00ff)] animate-rotate rounded-3xl blur-md opacity-70 group-hover:opacity-100"></div>
 
-            <div className="relative bg-white/10 backdrop-blur-xl rounded-3xl text-center p-6 border border-white/30 transition-all duration-500 group-hover:bg-white/20">
-              {/* Image */}
-              <img
-                src={service.image}
-                alt={service.title}
-                className="w-full h-40 object-cover rounded-2xl mb-4 transition-transform duration-500 group-hover:scale-105"
-              />
+              <div className="relative bg-white/10 backdrop-blur-xl rounded-3xl text-center p-6 border border-white/30 transition-all duration-500 group-hover:bg-white/20">
+                {/* Image */}
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-40 object-cover rounded-2xl mb-4 transition-transform duration-500 group-hover:scale-105"
+                />
 
-              <div className="flex justify-center">{service.icon}</div>
-              <h3 className="text-xl font-semibold text-white mb-2 drop-shadow-md">
-                {service.title}
-              </h3>
-              <p className="text-gray-200 text-sm leading-relaxed">{service.desc}</p>
-            </div>
-          </motion.div>
-        ))}
+                {/* Icon with border */}
+                <div
+                  className={`inline-flex justify-center items-center w-16 h-16 mx-auto mb-4 rounded-full border-2 border-white ${service.color} drop-shadow-glow`}
+                >
+                  <Icon className="text-3xl" />
+                </div>
+
+                <h3 className="text-xl font-semibold text-white mb-2 drop-shadow-md">
+                  {service.title}
+                </h3>
+                <p className="text-gray-200 text-sm leading-relaxed">{service.desc}</p>
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
 
       {/* Footer */}
@@ -181,5 +198,6 @@ const Service = () => {
 };
 
 export default Service;
+
 
 
