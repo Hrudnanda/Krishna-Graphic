@@ -1,14 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { FaPaintBrush, FaLaptop, FaPrint, FaCameraRetro } from "react-icons/fa";
 import heroImg from "../assets/led.jpg"; // replace with your image
+
+const statsData = [
+  { label: "Customers", value: 50000, suffix: "+" },
+  { label: "Regular Customers", value: 30000, suffix: "+" },
+  { label: "Years Experience", value: 5, suffix: "+" },
+];
+
+const Counter = ({ value, suffix }) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let start = 0;
+    const duration = 5000; // 5 seconds
+    const increment = value / (duration / 20);
+
+    const counter = setInterval(() => {
+      start += increment;
+      if (start >= value) {
+        start = value;
+        clearInterval(counter);
+      }
+      setCount(Math.floor(start));
+    }, 20);
+
+    return () => clearInterval(counter);
+  }, [value]);
+
+  return (
+    <span
+      className="text-5xl md:text-6xl font-extrabold text-white 
+      [text-shadow:0_0_8px_#fff,0_0_15px_#ff00ff,0_0_25px_#ff00ff] 
+      animate-pulse"
+    >
+      {count.toLocaleString()}
+      {suffix}
+    </span>
+  );
+};
 
 const Home = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-100 via-pink-100 to-purple-200 overflow-hidden">
       {/* Hero Section */}
       <section className="flex flex-col-reverse md:flex-row items-center justify-between max-w-7xl mx-auto px-6 py-20 md:py-28">
-        {/* Left Text */}
         <motion.div
           initial={{ x: -80, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
@@ -27,14 +63,13 @@ const Home = () => {
           </p>
           <motion.a
             whileHover={{ scale: 1.1 }}
-            href="#services"
+            href="#stats"
             className="inline-block bg-gradient-to-r from-orange-500 to-pink-600 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-2xl transition"
           >
-            Explore Services
+            Our Achievements
           </motion.a>
         </motion.div>
 
-        {/* Right Image */}
         <motion.div
           initial={{ x: 80, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
@@ -50,77 +85,38 @@ const Home = () => {
         </motion.div>
       </section>
 
-      {/* Services Preview Section */}
+      {/* Glowing Statistics Section */}
       <section
-        id="services"
+        id="stats"
         className="py-16 bg-gradient-to-r from-orange-100 via-pink-100 to-yellow-50"
       >
         <div className="max-w-7xl mx-auto text-center px-6">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-10">
-            Our Creative Services
+            Our Achievements
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-            {/* Card 1 */}
-            <motion.div
-              whileHover={{ y: -8, scale: 1.05 }}
-              className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center space-y-3"
-            >
-              <FaPaintBrush className="text-4xl text-orange-500" />
-              <h3 className="font-semibold text-lg text-gray-700">
-                Graphic Design
-              </h3>
-              <p className="text-sm text-gray-600 text-center">
-                Stunning visuals for posters, brochures, and branding.
-              </p>
-            </motion.div>
-
-            {/* Card 2 */}
-            <motion.div
-              whileHover={{ y: -8, scale: 1.05 }}
-              className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center space-y-3"
-            >
-              <FaLaptop className="text-4xl text-pink-500" />
-              <h3 className="font-semibold text-lg text-gray-700">
-                Digital Design
-              </h3>
-              <p className="text-sm text-gray-600 text-center">
-                Web banners, social media creatives, and digital ads.
-              </p>
-            </motion.div>
-
-            {/* Card 3 */}
-            <motion.div
-              whileHover={{ y: -8, scale: 1.05 }}
-              className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center space-y-3"
-            >
-              <FaPrint className="text-4xl text-rose-500" />
-              <h3 className="font-semibold text-lg text-gray-700">
-                Printing Solutions
-              </h3>
-              <p className="text-sm text-gray-600 text-center">
-                High-quality print materials with vibrant results.
-              </p>
-            </motion.div>
-
-            {/* Card 4 */}
-            <motion.div
-              whileHover={{ y: -8, scale: 1.05 }}
-              className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center space-y-3"
-            >
-              <FaCameraRetro className="text-4xl text-yellow-500" />
-              <h3 className="font-semibold text-lg text-gray-700">
-                Photo Editing
-              </h3>
-              <p className="text-sm text-gray-600 text-center">
-                Professional retouching & creative compositions.
-              </p>
-            </motion.div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
+            {statsData.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: index * 0.3, duration: 0.6 }}
+                className="relative p-10 flex flex-col items-center rounded-3xl cursor-pointer shadow-lg
+                  bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500
+                  border border-white border-opacity-20
+                  before:absolute before:-inset-1 before:bg-gradient-to-r before:from-pink-400 before:via-purple-400 before:to-indigo-400 before:blur-xl before:rounded-3xl before:opacity-70
+                  hover:scale-105 transition-transform"
+              >
+                <Counter value={stat.value} suffix={stat.suffix} />
+                <p className="mt-4 text-white font-semibold text-lg z-10 relative">
+                  {stat.label}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
-
-      
     </div>
   );
 };
