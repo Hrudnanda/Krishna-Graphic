@@ -4,7 +4,7 @@ import heroImg from "../assets/led.jpg"; // replace with your image
 
 const statsData = [
   { label: "Customers", value: 50000, suffix: "+" },
-  { label: "Regular Customers", value: 30000, suffix: "+" },
+  { label: "Return Customers", value: 30000, suffix: "+" },
   { label: "Years Experience", value: 5, suffix: "+" },
 ];
 
@@ -61,13 +61,27 @@ const Home = () => {
             We design your imagination — from creative posters to high-end
             digital graphics that speak louder than words.
           </p>
-          <motion.a
-            whileHover={{ scale: 1.1 }}
-            href="#stats"
-            className="inline-block bg-gradient-to-r from-orange-500 to-pink-600 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-2xl transition"
-          >
-            Our Achievements
-          </motion.a>
+
+          {/* Buttons */}
+          <div className="flex justify-center md:justify-start gap-4 mt-4">
+            {/* Our Services Button */}
+            <motion.a
+              whileHover={{ scale: 1.1 }}
+              href="#stats"
+              className="inline-block bg-gradient-to-r from-orange-500 to-pink-600 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-2xl transition"
+            >
+              Our Services
+            </motion.a>
+
+            {/* Contact Us Button */}
+            <motion.a
+              whileHover={{ scale: 1.1 }}
+              href="#contact"
+              className="inline-block bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-2xl transition"
+            >
+              Contact Us
+            </motion.a>
+          </div>
         </motion.div>
 
         <motion.div
