@@ -6,6 +6,11 @@ import Service from './Sections/Service'
 import Gallery from './Sections/Gallery'
 import About from './Sections/About'
 import Contact from './Sections/Contact'
+import WhatsAppButton from './Sections/whatsapp'
+import { FaWhatsapp } from 'react-icons/fa'
+import Footer from './Sections/Footer'
+
+
 
 
 const App = () => {
@@ -16,7 +21,10 @@ const App = () => {
       <Service/>
       <Gallery/>
       <About/>
-      <Contact/>
+     
+      <Footer/>
+      <WhatsAppButton/>
+      
     </div>
   )
 }
