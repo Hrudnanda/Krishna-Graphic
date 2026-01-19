@@ -55,12 +55,14 @@ function App() {
 
           {/* Desktop Menu */}
           <ul className="hidden md:flex items-center gap-8 text-lg font-medium text-orange-500">
+            <link to="/">
             <li
               className="flex items-center gap-2 hover:text-yellow-300 transition cursor-pointer"
               onClick={() => scrollTo(homeRef)}
             >
               <FaHome /> Home
             </li>
+            </link>
             <li
               className="flex items-center gap-2 hover:text-yellow-300 transition cursor-pointer"
               onClick={() => scrollTo(servicesRef)}
@@ -73,12 +75,14 @@ function App() {
             >
               <FaImages /> Gallery
             </li>
+            <link to="/About">
             <li
               className="flex items-center gap-2 hover:text-yellow-300 transition cursor-pointer"
               onClick={() => scrollTo(aboutRef)}
             >
               <FaInfoCircle /> About
             </li>
+            </link>
             <li
               className="flex items-center gap-2 hover:text-yellow-300 transition cursor-pointer"
               onClick={() => scrollTo(contactRef)}

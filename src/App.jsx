@@ -9,6 +9,7 @@ import Contact from './Sections/Contact'
 import WhatsAppButton from './Sections/whatsapp'
 import { FaWhatsapp } from 'react-icons/fa'
 import Footer from './Sections/Footer'
+import { Route, Routes } from 'react-router-dom'
 
 
 
@@ -17,6 +18,11 @@ const App = () => {
   return (
     <div>
       <Navbar/>
+      <Routes>
+<Route path='/' element={<Home/>} />
+<Route path='/About' element={<About/>} />
+<Route path='/' element={<Home/>} />
+      </Routes>
       <Home/>
       <Service/>
       <Gallery/>
